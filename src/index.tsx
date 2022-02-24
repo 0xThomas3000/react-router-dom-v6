@@ -5,15 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Invoices from './pages/Invoices';
+import Invoice from './pages/Invoice';
 import Expenses from './pages/Expenses';
+import NotFound from './pages/NotFound';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='invoices' element={<Invoices />} />
-        <Route path='expenses' element={<Expenses />} />
+        <Route path="/" element={<App />}>
+          <Route path="invoices" element={<Invoices />}>
+            <Route path=":invoiceId" element={<Invoice />} />
+          </Route>
+          <Route path="expenses" element={<Expenses />} />
+          {/* No other routes match */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
