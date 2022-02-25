@@ -10,9 +10,13 @@ const Invoice = () => {
 
   return (
     <h2 style={{ padding: '1rem' }}>
-      Invoice #{invoice?.id} for {invoice?.name}
+      {
+        invoice 
+          ? `Invoice #${invoice?.id} for ${invoice?.name}` 
+          : 'No Invoice found!!!'
+      }
     </h2>
   );
-};
+}
 
 export default Invoice
