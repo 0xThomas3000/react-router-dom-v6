@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NewInvoice from './pages/NewInvoice'
 import Invoices from './pages/Invoices';
 import Invoice from './pages/Invoice';
 import Expenses from './pages/Expenses';
@@ -17,6 +18,7 @@ ReactDOM.render(
           <Route path="invoices" element={<Invoices />}>
             <Route index element={<h2 style={{ padding: '1rem' }}>Select an Invoice</h2>} />
             <Route path=":invoiceId" element={<Invoice />} />
+            <Route path="new" element={<NewInvoice />} />
           </Route>
           <Route path="expenses" element={<Expenses />} />
           {/* No other routes match */}
