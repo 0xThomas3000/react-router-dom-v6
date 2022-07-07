@@ -1,12 +1,12 @@
+import React from 'react'
 
-import './App.css';
-
-function App() {
+const App = () => {
   return (
     <div>
-      Hello world
+      <h1>Book keeper</h1>
+      
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
