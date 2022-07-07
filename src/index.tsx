@@ -10,10 +10,11 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="invoices" element={<Invoices />} />
-        <Route path="expenses" element={<Expenses />} />
-        <Route path="shoes" element={<Shoes />} />
+        <Route path="/" element={<App />}>
+          <Route path="invoices" element={<Invoices />} />
+          <Route path="expenses" element={<Expenses />} />
+          <Route path="shoes" element={<Shoes />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
