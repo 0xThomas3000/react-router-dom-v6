@@ -1,15 +1,11 @@
-import React, { ChangeEvent, useState } from "react";
-import {
-  Link,
-  Outlet,
-  Navigate,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import React, { ChangeEvent } from "react";
+import { Link, Outlet, useSearchParams, useLocation } from "react-router-dom";
 import { getInvoices } from "../data";
 
 const Invoices = () => {
   let invoices = getInvoices();
+  let location = useLocation();
+
   const [inputValue, setInputValue] = useSearchParams("");
 
   function searchInvoice(e: ChangeEvent<HTMLInputElement>) {
@@ -18,7 +14,9 @@ const Invoices = () => {
     else setInputValue({});
   }
 
-  function ActiveLink() {}
+  function QueryNavLink({ to, ...props }: any) {
+    return <Link to={to + location.search} {...props} />;
+  }
 
   return (
     <div style={{ display: "flex" }}>
@@ -36,13 +34,13 @@ const Invoices = () => {
             return invoiceName.startsWith(filter.toLowerCase());
           })
           .map((invoice, index) => (
-            <Link
+            <QueryNavLink
               key={index}
               style={{ display: "block", margin: "1rem 0" }}
               to={`/invoices/${invoice.number}`}
             >
               {invoice.name}
-            </Link>
+            </QueryNavLink>
           ))}
       </nav>
       <Outlet />
