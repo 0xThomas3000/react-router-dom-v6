@@ -39,6 +39,6 @@ export const getInvoice = (number) => {
   return invoices.find((invoice) => invoice.number === number);
 };
 
-export const getSearchedInvoices = (name) => {
-  return invoices.filter((invoice) => invoice.name.toLowerCase().startsWith(name.toLowerCase()));
+export const deleteInvoice = (number) => {
+  invoices = invoices.filter((invoice) => invoice.number !== number);
 };
