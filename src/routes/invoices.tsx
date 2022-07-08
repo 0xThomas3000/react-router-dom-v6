@@ -1,5 +1,10 @@
 import React, { ChangeEvent } from "react";
-import { Link, Outlet, useSearchParams, useLocation } from "react-router-dom";
+import {
+  NavLink,
+  Outlet,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
 import { getInvoices } from "../data";
 
 const Invoices = () => {
@@ -15,7 +20,7 @@ const Invoices = () => {
   }
 
   function QueryNavLink({ to, ...props }: any) {
-    return <Link to={to + location.search} {...props} />;
+    return <NavLink to={to + location.search} {...props} />;
   }
 
   return (
@@ -33,15 +38,23 @@ const Invoices = () => {
             let invoiceName = invoice.name.toLowerCase();
             return invoiceName.startsWith(filter.toLowerCase());
           })
-          .map((invoice, index) => (
-            <QueryNavLink
-              key={index}
-              style={{ display: "block", margin: "1rem 0" }}
-              to={`/invoices/${invoice.number}`}
-            >
-              {invoice.name}
-            </QueryNavLink>
-          ))}
+          .map((invoice, index) => {
+            return (
+              <QueryNavLink
+                key={index}
+                style={({ isActive }: any) => {
+                  return {
+                    display: "block",
+                    margin: "1rem 0",
+                    color: isActive ? "red" : "",
+                  };
+                }}
+                to={`/invoices/${invoice.number}`}
+              >
+                {invoice.name}
+              </QueryNavLink>
+            );
+          })}
       </nav>
       <Outlet />
     </div>
