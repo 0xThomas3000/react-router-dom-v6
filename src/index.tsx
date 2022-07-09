@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
-import Expenses from "./routes/expenses";
 import Invoice from "./routes/invoice";
 import Invoices from "./routes/invoices";
 import Shoes from "./routes/shoes";
@@ -23,7 +22,6 @@ ReactDOM.render(
             />
             <Route path=":invoiceId" element={<Invoice />} />
           </Route>
-          <Route path="expenses" element={<Expenses />} />
           <Route path="shoes" element={<Shoes />} />
           <Route
             path="*"
