@@ -5,7 +5,7 @@ const BrandLink = ({ brand, ...props }: any) => {
   const [params] = useSearchParams();
   const brands = params.getAll("brand");
 
-  const isActive = brands.includes(brand);
+  const isActive = brands.includes(brand) && brands.length === 1;
 
   return (
     <Link
