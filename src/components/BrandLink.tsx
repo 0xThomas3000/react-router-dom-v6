@@ -2,15 +2,25 @@ import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 const BrandLink = ({ brand, ...props }: any) => {
-  const [params] = useSearchParams();
+  let [params] = useSearchParams();
   const brands = params.getAll("brand");
 
-  const isActive = brands.includes(brand) && brands.length === 1;
+  const isActive = brands.includes(brand);
+
+  if (!isActive) {
+    params.append("brand", brand);
+  } else {
+    params = new URLSearchParams(
+      Array.from(params).filter(
+        ([key, value]) => key !== "brand" || value !== brand
+      )
+    );
+  }
 
   return (
     <Link
       style={{ color: isActive ? "red" : "blue" }}
-      to={`/shoes?brand=${brand}`}
+      to={`/shoes?${params.toString()}`}
       {...props}
     />
   );
